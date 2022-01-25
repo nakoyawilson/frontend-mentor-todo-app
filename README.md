@@ -101,8 +101,9 @@ Use this section to outline areas that you want to continue focusing on in futur
 ### Useful resources
 
 - [Create React App - Deployment](https://create-react-app.dev/docs/deployment/#github-pages) - This was helpful with learning how to deploy React apps on github pages.
-- [How to resolve "Warning: Invalid DOM property `fill-rule`. Did you mean `fillRule`?" on Twilio Flex - Stack Overflow](https://stackoverflow.com/questions/54314284/how-to-resolve-warning-invalid-dom-property-fill-rule-did-you-mean-fillrul) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [How to resolve "Warning: Invalid DOM property `fill-rule`. Did you mean `fillRule`?" on Twilio Flex - Stack Overflow](https://stackoverflow.com/questions/54314284/how-to-resolve-warning-invalid-dom-property-fill-rule-did-you-mean-fillrul)
+- [How can I align one item right with flexbox? - Stack Overflow](https://stackoverflow.com/questions/35269947/how-can-i-align-one-item-right-with-flexbox)
+- [How do I store an array in localStorage?](https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage)
 
 **Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
