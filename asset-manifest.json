@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/frontend-mentor-todo-app/static/css/main.9eb3b372.css",
+    "main.js": "/frontend-mentor-todo-app/static/js/main.07febd9d.js",
+    "static/media/bg-desktop-light.jpg": "/frontend-mentor-todo-app/static/media/bg-desktop-light.3508d620efd5a52bb4ce.jpg",
+    "static/media/bg-desktop-dark.jpg": "/frontend-mentor-todo-app/static/media/bg-desktop-dark.73e47dbb723ebc772ef0.jpg",
+    "index.html": "/frontend-mentor-todo-app/index.html",
+    "static/media/icon-check.svg": "/frontend-mentor-todo-app/static/media/icon-check.a8fb15d0278c8e312df5.svg",
+    "main.9eb3b372.css.map": "/frontend-mentor-todo-app/static/css/main.9eb3b372.css.map",
+    "main.07febd9d.js.map": "/frontend-mentor-todo-app/static/js/main.07febd9d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9eb3b372.css",
+    "static/js/main.07febd9d.js"
+  ]
+}
