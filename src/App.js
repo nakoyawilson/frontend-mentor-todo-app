@@ -26,21 +26,34 @@ const App = () => {
     appBody.classList.add("dark-mode");
   }
 
-  const todoArray = [
+  const initialArray = [
     "Complete online JavaScript course",
     "Jog around the park 3x",
-    "10 minutes mediation",
+    "10 minutes meditation",
     "Read for 1 hour",
     "Pick up groceries",
     "Complete Todo App on Frontend Mentor",
   ];
 
-  const todoCount = todoArray.length;
+  if (localStorage.getItem("nw-fem-todolist") === null) {
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(initialArray));
+  }
+  const todoArray = JSON.parse(localStorage.getItem("nw-fem-todolist"));
+
+  console.log(todoArray);
+
+  let todoCount = todoArray.length;
+
+  const addToList = () => {
+    const formInput = document.querySelector(".create").value;
+    todoArray.push(formInput);
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
+  };
 
   return (
     <div className="App">
       <Header toggleFunction={toggleTheme} />
-      <CreateToDoItem />
+      <CreateToDoItem submitFunction={addToList} />
       <List todoList={todoArray} count={todoCount} />
       <Footer />
     </div>

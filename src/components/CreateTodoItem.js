@@ -1,7 +1,14 @@
-const CreateToDoItem = () => {
+const CreateToDoItem = (props) => {
   return (
     <div className="create-item-container">
-      <form>
+      <div className="checkbox-container">
+        <span className="custom-checkbox"></span>
+      </div>
+      <form
+        onSubmit={props.submitFunction}
+        className="create-item-form"
+        autoComplete="off"
+      >
         <label htmlFor="create-todo" className="visually-hidden">
           Create a new todo
         </label>
@@ -14,7 +21,6 @@ const CreateToDoItem = () => {
         <button type="submit" className="visually-hidden">
           Create
         </button>
-        <span className="custom-checkbox"></span>
       </form>
     </div>
   );

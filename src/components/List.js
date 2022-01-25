@@ -22,13 +22,13 @@ const List = (props) => {
             </span>
           </div>
           <div>
-            <span>Clear Completed</span>
+            <span className="clear">Clear Completed</span>
           </div>
         </div>
       </div>
       <div className="filter-options">
         <ul className="options">
-          <li className="filter-option">All</li>
+          <li className="filter-option active-option">All</li>
           <li className="filter-option">Active</li>
           <li className="filter-option">Completed</li>
         </ul>
