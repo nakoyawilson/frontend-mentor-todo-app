@@ -23,18 +23,18 @@
 .dark-mode {
   --bg-desktop: url("../public/assets/images/bg-desktop-dark.jpg");
   --bg-color: var(--dt-very-dark-blue);
-  --bg-input: var(--dt-desaturated-blue);
+  --bg-list: var(--dt-desaturated-blue);
   --todo-item-color: var(--white);
-  --line-through: var(--dt-light-grayish-blue);
+  --line-through: var(--dt-dark-grayish-blue);
   --instructions-color: var(--dt-dark-grayish-blue);
 }
 
 .light-mode {
   --bg-desktop: url("../public/assets/images/bg-desktop-light.jpg");
   --bg-color: var(--lt-very-light-gray);
-  --bg-input: var(--white);
+  --bg-list: var(--white);
   --todo-item-color: var(--lt-very-dark-grayish-blue);
-  --line-through: var(--lt-light-grayish-blue);
+  --line-through: var(--lt-dark-grayish-blue);
   --instructions-color: var(--lt-dark-grayish-blue);
 }
 
@@ -108,12 +108,16 @@ button:hover {
   border: none;
   outline: none;
   border-radius: 5px;
-  background: var(--bg-input);
+  background: var(--bg-list);
   margin-bottom: 1.5rem;
 }
 
 ::placeholder {
   opacity: 1;
+}
+
+.list-container {
+  position: relative;
 }
 
 #todo-list {
@@ -123,7 +127,7 @@ button:hover {
 }
 
 .todo-list-item {
-  background: var(--bg-input);
+  background: var(--bg-list);
   padding: 1.25rem;
   border-bottom: 1px solid var(--border-color);
   color: var(--todo-item-color);
@@ -187,6 +191,39 @@ input[type="checkbox"]:checked ~ .custom-checkbox {
   margin-left: 3rem;
 }
 
+.list-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  background-color: var(--bg-list);
+  color: var(--instructions-color);
+  font-size: 0.9rem;
+}
+
+.filter-options {
+  display: inline-block;
+  background-color: var(--bg-list);
+  color: var(--instructions-color);
+  position: absolute;
+  bottom: 5.25rem;
+  left: 35%;
+}
+
+.options {
+  display: flex;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.filter-option + .filter-option {
+  margin-left: 1rem;
+}
+
+.active-option {
+  color: var(--bright-blue);
+}
+
 .instructions {
   text-align: center;
   margin-bottom: 1rem;
@@ -199,7 +236,36 @@ input[type="checkbox"]:checked ~ .custom-checkbox {
 .attribution {
   font-size: 11px;
   text-align: center;
+  color: var(--instructions-color);
 }
 .attribution a {
-  color: hsl(228, 45%, 44%);
+  color: var(--bright-blue);
+  text-decoration: none;
+}
+
+.attribution a {
+  text-decoration: underline;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 576px) {
+  #todo-list {
+    margin-bottom: 0;
+  }
+
+  .create,
+  .todo-item {
+    font-size: 0.9rem;
+  }
+
+  .filter-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: static;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem 0 3rem;
+  }
 }

@@ -27,7 +27,7 @@ const App = () => {
   }
 
   const todoArray = [
-    "Complete onine JavaScript course",
+    "Complete online JavaScript course",
     "Jog around the park 3x",
     "10 minutes mediation",
     "Read for 1 hour",
