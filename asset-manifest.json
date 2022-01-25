@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/frontend-mentor-todo-app/static/css/main.95cbb707.css",
-    "main.js": "/frontend-mentor-todo-app/static/js/main.f589ec7f.js",
+    "main.css": "/frontend-mentor-todo-app/static/css/main.76445ab9.css",
+    "main.js": "/frontend-mentor-todo-app/static/js/main.f0942d8e.js",
     "static/media/bg-desktop-light.jpg": "/frontend-mentor-todo-app/static/media/bg-desktop-light.3508d620efd5a52bb4ce.jpg",
     "static/media/bg-desktop-dark.jpg": "/frontend-mentor-todo-app/static/media/bg-desktop-dark.73e47dbb723ebc772ef0.jpg",
     "index.html": "/frontend-mentor-todo-app/index.html",
     "static/media/icon-check.svg": "/frontend-mentor-todo-app/static/media/icon-check.a8fb15d0278c8e312df5.svg",
-    "main.95cbb707.css.map": "/frontend-mentor-todo-app/static/css/main.95cbb707.css.map",
-    "main.f589ec7f.js.map": "/frontend-mentor-todo-app/static/js/main.f589ec7f.js.map"
+    "main.76445ab9.css.map": "/frontend-mentor-todo-app/static/css/main.76445ab9.css.map",
+    "main.f0942d8e.js.map": "/frontend-mentor-todo-app/static/js/main.f0942d8e.js.map"
   },
   "entrypoints": [
-    "static/css/main.95cbb707.css",
-    "static/js/main.f589ec7f.js"
+    "static/css/main.76445ab9.css",
+    "static/js/main.f0942d8e.js"
   ]
 }
