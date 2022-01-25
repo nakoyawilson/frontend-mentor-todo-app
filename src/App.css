@@ -2,7 +2,11 @@
 
 :root {
   --font: "Josefin Sans", sans-serif;
-  --check-background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  --check-background: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
   --white: hsl(0, 0%, 100%);
   --bright-blue: hsl(220, 98%, 61%);
   --lt-very-light-gray: hsl(0, 0%, 98%);
@@ -22,6 +26,7 @@
 
 .dark-mode {
   --bg-desktop: url("../public/assets/images/bg-desktop-dark.jpg");
+  --bg-mobile: url("../public/assets/images/bg-mobile-dark.jpg");
   --bg-color: var(--dt-very-dark-blue);
   --bg-list: var(--dt-desaturated-blue);
   --todo-item-color: var(--white);
@@ -31,6 +36,7 @@
 
 .light-mode {
   --bg-desktop: url("../public/assets/images/bg-desktop-light.jpg");
+  --bg-mobile: url("../public/assets/images/bg-mobile-light.jpg");
   --bg-color: var(--lt-very-light-gray);
   --bg-list: var(--white);
   --todo-item-color: var(--lt-very-dark-grayish-blue);
@@ -163,7 +169,7 @@ input[type="checkbox"]:checked ~ .todo-item {
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-.custom-checkbox:after {
+.custom-checkbox::after {
   content: "";
   background: url("../public/assets/images/icon-check.svg");
   position: absolute;
@@ -171,20 +177,19 @@ input[type="checkbox"]:checked ~ .todo-item {
 }
 
 /* Show the checkmark when checked */
-input[type="checkbox"]:checked ~ .custom-checkbox {
+input[type="checkbox"]:checked ~ .custom-checkbox::after {
   display: block;
 }
 
 /* Style the checkmark/indicator */
 .todo-list-item .custom-checkbox::after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: 1px solid red;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 11px;
+  height: 9px;
 }
 
 .todo-item {
@@ -250,6 +255,11 @@ input[type="checkbox"]:checked ~ .custom-checkbox {
 /* Media Queries */
 
 @media screen and (max-width: 576px) {
+  body {
+    background-image: var(--bg-mobile);
+    background-size: 100% 200px;
+  }
+
   #todo-list {
     margin-bottom: 0;
   }
