@@ -6,25 +6,33 @@ import Footer from "./components/Footer";
 
 const App = () => {
   const appBody = document.querySelector("body");
+  let themePreference = "";
 
   const toggleTheme = () => {
     if (appBody.classList.contains("dark-mode")) {
       appBody.classList.remove("dark-mode");
       appBody.classList.add("light-mode");
+      themePreference = "light-mode";
     } else {
       appBody.classList.remove("light-mode");
       appBody.classList.add("dark-mode");
+      themePreference = "dark-mode";
     }
+    localStorage.setItem("nw-fem-todo-app-color", themePreference);
   };
 
-  if (
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: light)").matches
-  ) {
-    appBody.classList.add("light-mode");
-  } else {
-    appBody.classList.add("dark-mode");
+  if (localStorage.getItem("nw-fem-todo-app-color") === null) {
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: light)").matches
+    ) {
+      themePreference = "light-mode";
+    } else {
+      themePreference = "dark-mode";
+    }
+    localStorage.setItem("nw-fem-todo-app-color", themePreference);
   }
+  appBody.classList.add(localStorage.getItem("nw-fem-todo-app-color"));
 
   const initialArray = [
     "Complete online JavaScript course",
