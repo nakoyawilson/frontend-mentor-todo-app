@@ -7,6 +7,7 @@ const List = (props) => {
         key={props.todoList.indexOf(item)}
         todoItem={item}
         itemID={props.todoList.indexOf(item)}
+        deleteFunction={props.deleteFunction}
       />
     );
   };

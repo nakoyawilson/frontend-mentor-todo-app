@@ -51,7 +51,7 @@ const TodoItem = (props) => {
         </label>
       </div>
       <div className="delete-container">
-        <button>
+        <button onClick={() => props.deleteFunction(props.itemID)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
             <path
               fill="#494C6B"
