@@ -189,12 +189,12 @@ input[type="checkbox"] {
   background-color: inherit;
 }
 
-input[type="checkbox"]:checked ~ .custom-checkbox {
+input[type="checkbox"]:checked + .custom-checkbox {
   background: var(--check-background);
   border: none;
 }
 
-.checked-off {
+.checked-item {
   text-decoration: line-through;
   color: var(--line-through);
 }

@@ -1,12 +1,29 @@
+import { useState } from "react";
+
 const TodoItem = (props) => {
+  const [itemClassList, setItemClassList] = useState("todo-item");
+
+  const handleChange = (e) => {
+    const selectedCheckbox = document.getElementById(e.target.id);
+    if (selectedCheckbox.checked) {
+      setItemClassList("todo-item checked-item");
+    } else {
+      setItemClassList("todo-item");
+    }
+  };
   return (
     <div className="todo-list-item">
       <div className="checkbox-container">
-        <input type="checkbox" name="todo-list" id={props.itemID} />
+        <input
+          type="checkbox"
+          name="todo-list"
+          id={props.itemID}
+          onChange={handleChange}
+        />
         <span className="custom-checkbox"></span>
       </div>
       <div className="label-container">
-        <label htmlFor={props.itemID} className="todo-item">
+        <label htmlFor={props.itemID} className={itemClassList}>
           {props.todoItem}
         </label>
       </div>

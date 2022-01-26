@@ -48,8 +48,6 @@ const App = () => {
   }
   const todoArray = JSON.parse(localStorage.getItem("nw-fem-todolist"));
 
-  console.log(todoArray);
-
   let todoCount = todoArray.length;
 
   const addToList = () => {
