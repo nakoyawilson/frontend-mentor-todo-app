@@ -1,16 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const TodoItem = (props) => {
-  const [itemClassList, setItemClassList] = useState("todo-item");
+  const localStorageID = props.todoItem;
+
+  let currentState = false;
+  if (localStorage.getItem(localStorageID) === null) {
+    localStorage.setItem(localStorageID, currentState);
+  } else {
+    if (localStorage.getItem(localStorageID) === "true") {
+      currentState = true;
+    }
+  }
+
+  const [isChecked, setIsChecked] = useState(currentState);
+
+  const [itemClassList, setItemClassList] = useState(
+    isChecked ? "todo-item checked-item" : "todo-item"
+  );
 
   const handleChange = (e) => {
     const selectedCheckbox = document.getElementById(e.target.id);
     if (selectedCheckbox.checked) {
+      setIsChecked(true);
       setItemClassList("todo-item checked-item");
     } else {
+      setIsChecked(false);
       setItemClassList("todo-item");
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem(localStorageID, isChecked);
+  }, [isChecked, localStorageID]);
+
   return (
     <div className="todo-list-item">
       <div className="checkbox-container">
@@ -19,6 +41,7 @@ const TodoItem = (props) => {
           name="todo-list"
           id={props.itemID}
           onChange={handleChange}
+          checked={isChecked}
         />
         <span className="custom-checkbox"></span>
       </div>
