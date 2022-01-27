@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
 import TodoItem from "./TodoItem";
 import FilterOption from "./FilterOption";
 
 const List = (props) => {
-  const [selectedOption, setSelectedOption] = useState("All");
   const displayListItem = (item) => {
     return (
       <TodoItem

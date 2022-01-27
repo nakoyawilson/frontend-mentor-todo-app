@@ -57,6 +57,7 @@ const App = () => {
   const list = JSON.parse(localStorage.getItem("nw-fem-todolist"));
   const [todoArray, setTodoArray] = useState(list);
   const [count, setCount] = useState(todoArray.length);
+  const [displayedList, setDisplayedList] = useState(todoArray);
 
   // Add to list function
   const addToList = (e) => {
@@ -78,36 +79,36 @@ const App = () => {
   // Filter list function
   const filterItems = (option) => {
     const todoItems = document.querySelectorAll('input[type="checkbox"]');
-    let activeCount = 0;
-    let completedCount = 0;
+    let activeList = [];
+    let completedList = [];
+    let listToDisplay = todoArray;
     todoItems.forEach((item) => {
       if (item.checked) {
-        completedCount++;
+        completedList.push(todoArray[item.id]);
       } else {
-        activeCount++;
+        activeList.push(todoArray[item.id]);
       }
     });
     if (option === "Active") {
-      setCount(activeCount);
+      listToDisplay = activeList;
     } else if (option === "Completed") {
-      setCount(completedCount);
-    } else if (option === "All") {
-      setCount(todoArray.length);
+      listToDisplay = completedList;
     }
+    setDisplayedList(listToDisplay);
+    console.log(listToDisplay);
+    setCount(listToDisplay.length);
   };
 
   useEffect(() => {
     localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
   }, [todoArray]);
 
-  useEffect(filterItems, [count, todoArray.length]);
-
   return (
     <div className="App">
       <Header toggleFunction={toggleTheme} />
       <CreateToDoItem submitFunction={addToList} />
       <List
-        todoList={todoArray}
+        todoList={displayedList}
         deleteFunction={deleteFromList}
         count={count}
         filterFunction={filterItems}
