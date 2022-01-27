@@ -246,22 +246,25 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 }
 
 .filter-options {
-  display: inline-block;
+  display: flex;
+  gap: 1rem;
   background-color: var(--bg-list);
   color: var(--instructions-color);
   position: absolute;
-  bottom: 5.25rem;
+  bottom: 5.2rem;
   left: 35%;
 }
 
-.options {
-  display: flex;
-  list-style: none;
+.radio-button {
+  display: none;
+}
+
+.filter-option {
   font-size: 0.9rem;
 }
 
-.filter-option + .filter-option {
-  margin-left: 1rem;
+.filter-option:first-of-type {
+  margin-left: 0;
 }
 
 .clear:hover,
