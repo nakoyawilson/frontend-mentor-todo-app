@@ -64,6 +64,7 @@ const App = () => {
     const formInput = document.querySelector(".create");
     const updatedList = [...todoArray, formInput.value];
     setTodoArray(updatedList);
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
     formInput.value = "";
     e.preventDefault();
   };
@@ -74,6 +75,7 @@ const App = () => {
       (todo) => todoArray.indexOf(todo) !== taskID
     );
     setTodoArray(updatedList);
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
   };
 
   // Filter list function
@@ -81,27 +83,33 @@ const App = () => {
     const todoItems = document.querySelectorAll('input[type="checkbox"]');
     let activeList = [];
     let completedList = [];
-    let listToDisplay = todoArray;
     todoItems.forEach((item) => {
       if (item.checked) {
         completedList.push(todoArray[item.id]);
-      } else {
+      } else if (!item.checked) {
         activeList.push(todoArray[item.id]);
       }
     });
+    let listToDisplay = [];
     if (option === "Active") {
-      listToDisplay = activeList;
+      listToDisplay = todoArray.filter((todo) => {
+        return activeList.includes(todo);
+      });
+      console.log(listToDisplay);
     } else if (option === "Completed") {
-      listToDisplay = completedList;
+      listToDisplay = todoArray.filter((todo) => {
+        return completedList.includes(todo);
+      });
+    } else {
+      listToDisplay = todoArray;
     }
     setDisplayedList(listToDisplay);
-    console.log(listToDisplay);
     setCount(listToDisplay.length);
   };
 
   useEffect(() => {
     localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
-  }, [todoArray]);
+  }, [displayedList, todoArray]);
 
   return (
     <div className="App">
@@ -112,6 +120,7 @@ const App = () => {
         deleteFunction={deleteFromList}
         count={count}
         filterFunction={filterItems}
+        totalList={todoArray}
       />
       <Footer />
     </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const TodoItem = (props) => {
-  const localStorageID = props.todoItem;
+  const localStorageID = props.itemID;
 
   let currentState = false;
   if (localStorage.getItem(localStorageID) === null) {

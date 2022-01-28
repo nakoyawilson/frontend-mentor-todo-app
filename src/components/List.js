@@ -3,11 +3,12 @@ import FilterOption from "./FilterOption";
 
 const List = (props) => {
   const displayListItem = (item) => {
+    const todoItemID = props.totalList.indexOf(item);
     return (
       <TodoItem
-        key={props.todoList.indexOf(item)}
+        key={todoItemID}
         todoItem={item}
-        itemID={props.todoList.indexOf(item)}
+        itemID={todoItemID}
         deleteFunction={props.deleteFunction}
       />
     );
