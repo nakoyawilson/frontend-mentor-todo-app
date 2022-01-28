@@ -58,6 +58,8 @@ const App = () => {
   const [todoArray, setTodoArray] = useState(list);
   const [count, setCount] = useState(todoArray.length);
   const [displayedList, setDisplayedList] = useState(todoArray);
+  const [completedItemsList, setCompletedItemsList] = useState([]);
+  const [activeItemsList, setActiveItemsList] = useState([]);
 
   // Add to list function
   const addToList = (e) => {
@@ -81,24 +83,26 @@ const App = () => {
   // Filter list function
   const filterItems = (option) => {
     const todoItems = document.querySelectorAll('input[type="checkbox"]');
-    let activeList = [];
-    let completedList = [];
+    let active = [];
+    let completed = [];
     todoItems.forEach((item) => {
       if (item.checked) {
-        completedList.push(todoArray[item.id]);
+        completed.push(todoArray[item.id]);
       } else if (!item.checked) {
-        activeList.push(todoArray[item.id]);
+        active.push(todoArray[item.id]);
       }
     });
+    setCompletedItemsList(completed);
+    setActiveItemsList(active);
     let listToDisplay = [];
     if (option === "Active") {
       listToDisplay = todoArray.filter((todo) => {
-        return activeList.includes(todo);
+        return activeItemsList.includes(todo);
       });
       console.log(listToDisplay);
     } else if (option === "Completed") {
       listToDisplay = todoArray.filter((todo) => {
-        return completedList.includes(todo);
+        return completedItemsList.includes(todo);
       });
     } else {
       listToDisplay = todoArray;
