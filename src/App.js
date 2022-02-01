@@ -87,8 +87,6 @@ const App = () => {
   const [todoArray, setTodoArray] = useState(list);
   const [count, setCount] = useState(todoArray.length);
   const [displayedList, setDisplayedList] = useState(todoArray);
-  const [completedItemsList, setCompletedItemsList] = useState([]);
-  const [activeItemsList, setActiveItemsList] = useState([]);
 
   // Add to list function
   const addToList = (e) => {
@@ -117,29 +115,15 @@ const App = () => {
 
   // Filter list function
   const filterItems = (option) => {
-    const todoItems = document.querySelectorAll('input[type="checkbox"]');
-    let active = [];
-    let completed = [];
-    todoItems.forEach((item) => {
-      if (item.checked) {
-        completed.push(todoArray[item.id]);
-      } else {
-        active.push(todoArray[item.id]);
-      }
-    });
-    setCompletedItemsList(completed);
-    setActiveItemsList(active);
-    let listToDisplay = [];
+    let listToDisplay;
     if (option === "Active") {
-      listToDisplay = todoArray.filter((todo) => {
-        // console.log(activeItemsList.includes(todo));
-        return activeItemsList.includes(todo);
-      });
+      listToDisplay = todoArray.filter(
+        (todo) => todoArray[todoArray.indexOf(todo)].isChecked === false
+      );
     } else if (option === "Completed") {
-      listToDisplay = todoArray.filter((todo) => {
-        // console.log(completedItemsList.includes(todo));
-        return completedItemsList.includes(todo);
-      });
+      listToDisplay = todoArray.filter(
+        (todo) => todoArray[todoArray.indexOf(todo)].isChecked === true
+      );
     } else {
       listToDisplay = todoArray;
     }
@@ -153,14 +137,14 @@ const App = () => {
 
   useEffect(() => {
     // console.log(displayedList);
-  }, [displayedList, activeItemsList, completedItemsList, todoArray]);
+  }, [displayedList, todoArray, count]);
 
   return (
     <div className="App">
       <Header toggleFunction={toggleTheme} />
       <CreateToDoItem submitFunction={addToList} />
       <List
-        todoList={todoArray}
+        todoList={displayedList}
         deleteFunction={deleteFromList}
         count={count}
         filterFunction={filterItems}
