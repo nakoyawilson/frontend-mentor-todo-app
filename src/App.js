@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import CreateToDoItem from "./components/CreateTodoItem";
 import List from "./components/List";
 import Footer from "./components/Footer";
+import { v4 as uuidv4 } from "uuid";
 
 const App = () => {
   const appBody = document.querySelector("body");
@@ -40,19 +41,47 @@ const App = () => {
   }
   appBody.classList.add(localStorage.getItem("nw-fem-todo-app-color"));
 
-  // Starter Todo List
-  const initialArray = [
-    "Complete online JavaScript course",
-    "Jog around the park 3x",
-    "10 minutes meditation",
-    "Read for 1 hour",
-    "Pick up groceries",
-    "Complete Todo App on Frontend Mentor",
-  ];
-
   // Set initial array
   if (localStorage.getItem("nw-fem-todolist") === null) {
-    localStorage.setItem("nw-fem-todolist", JSON.stringify(initialArray));
+    // Create unique ids for list items
+    const idArray = [];
+    for (let i = 0; i < 6; i++) {
+      const uniqueID = uuidv4();
+      idArray.push(uniqueID);
+    }
+    const initialToDoList = [
+      {
+        id: idArray[0],
+        todo: "Complete online JavaScript course",
+        isChecked: false,
+      },
+      {
+        id: idArray[1],
+        todo: "Jog around the park 3x",
+        isChecked: false,
+      },
+      {
+        id: idArray[2],
+        todo: "10 minutes meditation",
+        isChecked: false,
+      },
+      {
+        id: idArray[3],
+        todo: "Read for 1 hour",
+        isChecked: false,
+      },
+      {
+        id: idArray[4],
+        todo: "Pick up groceries",
+        isChecked: false,
+      },
+      {
+        id: idArray[5],
+        todo: "Complete Todo App on Frontend Mentor",
+        isChecked: false,
+      },
+    ];
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(initialToDoList));
   }
   const list = JSON.parse(localStorage.getItem("nw-fem-todolist"));
   const [todoArray, setTodoArray] = useState(list);
@@ -64,7 +93,13 @@ const App = () => {
   // Add to list function
   const addToList = (e) => {
     const formInput = document.querySelector(".create");
-    const updatedList = [...todoArray, formInput.value];
+    const itemID = uuidv4();
+    const newItem = {
+      id: itemID,
+      todo: formInput.value,
+      isChecked: false,
+    };
+    const updatedList = [...todoArray, newItem];
     setTodoArray(updatedList);
     localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
     formInput.value = "";
@@ -74,7 +109,7 @@ const App = () => {
   // Delete from list function
   const deleteFromList = (taskID) => {
     const updatedList = todoArray.filter(
-      (todo) => todoArray.indexOf(todo) !== taskID
+      (todo) => todoArray[todoArray.indexOf(todo)].id !== taskID
     );
     setTodoArray(updatedList);
     localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
@@ -88,7 +123,7 @@ const App = () => {
     todoItems.forEach((item) => {
       if (item.checked) {
         completed.push(todoArray[item.id]);
-      } else if (!item.checked) {
+      } else {
         active.push(todoArray[item.id]);
       }
     });
@@ -97,11 +132,12 @@ const App = () => {
     let listToDisplay = [];
     if (option === "Active") {
       listToDisplay = todoArray.filter((todo) => {
+        // console.log(activeItemsList.includes(todo));
         return activeItemsList.includes(todo);
       });
-      console.log(listToDisplay);
     } else if (option === "Completed") {
       listToDisplay = todoArray.filter((todo) => {
+        // console.log(completedItemsList.includes(todo));
         return completedItemsList.includes(todo);
       });
     } else {
@@ -115,12 +151,16 @@ const App = () => {
     localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
   }, [displayedList, todoArray]);
 
+  useEffect(() => {
+    // console.log(displayedList);
+  }, [displayedList, activeItemsList, completedItemsList, todoArray]);
+
   return (
     <div className="App">
       <Header toggleFunction={toggleTheme} />
       <CreateToDoItem submitFunction={addToList} />
       <List
-        todoList={displayedList}
+        todoList={todoArray}
         deleteFunction={deleteFromList}
         count={count}
         filterFunction={filterItems}

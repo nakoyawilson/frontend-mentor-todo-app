@@ -18,6 +18,7 @@ const FilterOption = (props) => {
         id={props.filterID}
         className="radio-button"
         defaultChecked={props.isChecked}
+        value={props.filterLabel}
         onChange={selectOption}
         onClick={() => props.filterFunction(props.filterLabel)}
       />
