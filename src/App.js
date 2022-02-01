@@ -113,6 +113,15 @@ const App = () => {
     localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
   };
 
+  // Clear Completed Items from list
+  const clearCompletedItems = () => {
+    const updatedList = todoArray.filter(
+      (todo) => todoArray[todoArray.indexOf(todo)].isChecked === false
+    );
+    setTodoArray(updatedList);
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
+  };
+
   // Filter list function
   const filterItems = (option) => {
     let listToDisplay;
@@ -135,9 +144,7 @@ const App = () => {
     localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
   }, [displayedList, todoArray]);
 
-  useEffect(() => {
-    // console.log(displayedList);
-  }, [displayedList, todoArray, count]);
+  useEffect(() => {}, [displayedList, todoArray, count]);
 
   return (
     <div className="App">
@@ -148,7 +155,7 @@ const App = () => {
         deleteFunction={deleteFromList}
         count={count}
         filterFunction={filterItems}
-        totalList={todoArray}
+        clearFunction={clearCompletedItems}
       />
       <Footer />
     </div>
