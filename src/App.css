@@ -138,10 +138,6 @@ svg {
   opacity: 1;
 }
 
-.list-container {
-  position: relative;
-}
-
 #todo-list {
   border-radius: 5px;
   overflow: hidden;
@@ -235,6 +231,10 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   opacity: 1;
 }
 
+.list-footer-wrapper {
+  position: relative;
+}
+
 .list-footer {
   display: flex;
   justify-content: space-between;
@@ -251,8 +251,9 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   background-color: var(--bg-list);
   color: var(--instructions-color);
   position: absolute;
-  bottom: 5.2rem;
+  /* bottom: 5.2rem; */
   left: 35%;
+  top: 1.05rem;
 }
 
 .radio-button {
