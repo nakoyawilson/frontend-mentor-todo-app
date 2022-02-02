@@ -1,37 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const TodoItem = (props) => {
-  const localStorageID = props.itemID;
-
-  let currentState = false;
-  // if (localStorage.getItem(localStorageID) === null) {
-  //   localStorage.setItem(localStorageID, currentState);
-  // } else {
-  //   if (localStorage.getItem(localStorageID) === "true") {
-  //     currentState = true;
-  //   }
-  // }
-
-  // const [isChecked, setIsChecked] = useState(currentState);
-
+  const [isChecked, setIsChecked] = useState(props.itemIsChecked);
   const [itemClassList, setItemClassList] = useState(
-    props.itemIsChecked ? "todo-item checked-item" : "todo-item"
+    isChecked ? "todo-item checked-item" : "todo-item"
   );
+
+  const itemList = JSON.parse(localStorage.getItem("nw-fem-todolist"));
 
   const handleChange = (e) => {
     const selectedCheckbox = document.getElementById(e.target.id);
+    const arrayIndex = itemList.findIndex((item) => item.id === e.target.id);
     if (selectedCheckbox.checked) {
-      // setIsChecked(true);
+      setIsChecked(true);
       setItemClassList("todo-item checked-item");
     } else {
-      // setIsChecked(false);
+      setIsChecked(false);
       setItemClassList("todo-item");
     }
+    itemList[arrayIndex].isChecked = isChecked;
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(itemList));
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem(localStorageID, isChecked);
-  // }, [isChecked, localStorageID]);
+  useEffect(() => {
+    console.log("test");
+  }, [isChecked, itemClassList, itemList]);
+
+  useCallback(handleChange, [isChecked, itemList]);
 
   return (
     <div className="todo-list-item">
@@ -41,7 +36,7 @@ const TodoItem = (props) => {
           name="todo-list"
           id={props.itemID}
           onChange={handleChange}
-          checked={props.itemIsChecked}
+          checked={isChecked}
         />
         <span className="custom-checkbox"></span>
       </div>

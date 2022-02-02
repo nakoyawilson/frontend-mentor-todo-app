@@ -25,7 +25,9 @@ const List = (props) => {
             </span>
           </div>
           <div>
-            <span className="clear">Clear Completed</span>
+            <span className="clear" onClick={props.clearFunction}>
+              Clear Completed
+            </span>
           </div>
         </div>
       </div>
