@@ -1,32 +1,20 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 const TodoItem = (props) => {
   const [isChecked, setIsChecked] = useState(props.itemIsChecked);
-  const [itemClassList, setItemClassList] = useState(
-    isChecked ? "todo-item checked-item" : "todo-item"
-  );
+  const [arrayIndex, setArrayIndex] = useState(0);
 
   const itemList = JSON.parse(localStorage.getItem("nw-fem-todolist"));
 
   const handleChange = (e) => {
-    const selectedCheckbox = document.getElementById(e.target.id);
-    const arrayIndex = itemList.findIndex((item) => item.id === e.target.id);
-    if (selectedCheckbox.checked) {
-      setIsChecked(true);
-      setItemClassList("todo-item checked-item");
-    } else {
-      setIsChecked(false);
-      setItemClassList("todo-item");
-    }
-    itemList[arrayIndex].isChecked = isChecked;
-    localStorage.setItem("nw-fem-todolist", JSON.stringify(itemList));
+    setIsChecked(!isChecked);
+    setArrayIndex(itemList.findIndex((item) => item.id === e.target.id));
   };
 
   useEffect(() => {
-    console.log("test");
-  }, [isChecked, itemClassList, itemList]);
-
-  useCallback(handleChange, [isChecked, itemList]);
+    itemList[arrayIndex].isChecked = isChecked;
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(itemList));
+  }, [isChecked, itemList, arrayIndex]);
 
   return (
     <div className="todo-list-item">
@@ -41,7 +29,10 @@ const TodoItem = (props) => {
         <span className="custom-checkbox"></span>
       </div>
       <div className="label-container">
-        <label htmlFor={props.itemID} className={itemClassList}>
+        <label
+          htmlFor={props.itemID}
+          className={isChecked ? "todo-item checked-item" : "todo-item"}
+        >
           {props.todoItem}
         </label>
       </div>
