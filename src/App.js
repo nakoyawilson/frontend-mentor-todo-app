@@ -83,8 +83,10 @@ const App = () => {
     ];
     localStorage.setItem("nw-fem-todolist", JSON.stringify(initialToDoList));
   }
-  const list = JSON.parse(localStorage.getItem("nw-fem-todolist"));
-  const [todoArray, setTodoArray] = useState(list);
+
+  const [todoArray, setTodoArray] = useState(
+    JSON.parse(localStorage.getItem("nw-fem-todolist"))
+  );
   const [count, setCount] = useState(todoArray.length);
   const [displayedList, setDisplayedList] = useState(todoArray);
 
@@ -99,7 +101,8 @@ const App = () => {
     };
     const updatedList = [...todoArray, newItem];
     setTodoArray(updatedList);
-    localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
+    setDisplayedList(updatedList);
+    setCount(displayedList.length);
     formInput.value = "";
     e.preventDefault();
   };
@@ -110,7 +113,8 @@ const App = () => {
       (todo) => todoArray[todoArray.indexOf(todo)].id !== taskID
     );
     setTodoArray(updatedList);
-    localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
+    setDisplayedList(updatedList);
+    setCount(displayedList.length);
   };
 
   // Clear Completed Items from list
@@ -119,7 +123,8 @@ const App = () => {
       (todo) => todoArray[todoArray.indexOf(todo)].isChecked === false
     );
     setTodoArray(updatedList);
-    localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
+    setDisplayedList(updatedList);
+    setCount(displayedList.length);
   };
 
   // Filter list function
@@ -142,9 +147,7 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
-  }, [displayedList, todoArray]);
-
-  useEffect(() => {}, [displayedList, todoArray, count]);
+  }, [todoArray]);
 
   return (
     <div className="App">
