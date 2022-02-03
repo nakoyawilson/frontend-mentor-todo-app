@@ -1,8 +1,9 @@
+import { Droppable } from "react-beautiful-dnd";
 import TodoItem from "./TodoItem";
 import FilterOption from "./FilterOption";
 
 const List = (props) => {
-  const displayListItem = (item) => {
+  const displayListItem = (item, index) => {
     return (
       <TodoItem
         key={item.id}
@@ -10,6 +11,7 @@ const List = (props) => {
         itemID={item.id}
         itemIsChecked={item.isChecked}
         deleteFunction={props.deleteFunction}
+        index={index}
       />
     );
   };
@@ -17,9 +19,18 @@ const List = (props) => {
   return (
     <div className="list-container">
       <div id="todo-list">
-        <div className="list-wrapper">
-          {props.todoList.map(displayListItem)}
-        </div>
+        <Droppable droppableId="todo-list-1">
+          {(provided) => (
+            <div
+              className="list-wrapper"
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              {props.todoList.map(displayListItem)}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
         <div className="list-footer-wrapper">
           <div className="list-footer">
             <span>

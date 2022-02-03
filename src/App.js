@@ -5,6 +5,7 @@ import CreateToDoItem from "./components/CreateTodoItem";
 import List from "./components/List";
 import Footer from "./components/Footer";
 import { v4 as uuidv4 } from "uuid";
+import { DragDropContext } from "react-beautiful-dnd";
 
 const App = () => {
   const appBody = document.querySelector("body");
@@ -145,6 +146,25 @@ const App = () => {
     setCount(listToDisplay.length);
   };
 
+  // Save Drag and Drop list order function
+  const onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (destination.index === source.index) {
+      return;
+    }
+
+    const droppedItem = todoArray.find((todo) => todo.id === draggableId);
+    const newTodoOrder = Array.from(todoArray);
+    newTodoOrder.splice(source.index, 1);
+    newTodoOrder.splice(destination.index, 0, droppedItem);
+    setTodoArray(newTodoOrder);
+  };
+
   useEffect(() => {
     localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
   }, [todoArray]);
@@ -153,13 +173,15 @@ const App = () => {
     <div className="App">
       <Header toggleFunction={toggleTheme} />
       <CreateToDoItem submitFunction={addToList} />
-      <List
-        todoList={displayedList}
-        deleteFunction={deleteFromList}
-        count={count}
-        filterFunction={filterItems}
-        clearFunction={clearCompletedItems}
-      />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <List
+          todoList={displayedList}
+          deleteFunction={deleteFromList}
+          count={count}
+          filterFunction={filterItems}
+          clearFunction={clearCompletedItems}
+        />
+      </DragDropContext>
       <Footer />
     </div>
   );

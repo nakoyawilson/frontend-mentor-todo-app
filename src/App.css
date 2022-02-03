@@ -144,6 +144,10 @@ svg {
   margin-bottom: 3rem;
 }
 
+.list-wrapper {
+  color: var(--todo-item-color);
+}
+
 .todo-list-item {
   display: flex;
   align-items: center;
