@@ -19,9 +19,10 @@
   --dt-light-grayish-blue: hsl(234, 39%, 85%);
   --dt-light-grayish-blue-hover: hsl(236, 33%, 92%);
   --dt-dark-grayish-blue: hsl(234, 11%, 52%);
+  --dt-dark-grayish-blue-transparent: hsla(234, 11%, 52%, 0.5);
   --dt-very-dark-grayish-blue1: hsl(233, 14%, 35%);
   --dt-very-dark-grayish-blue2: hsl(237, 14%, 26%);
-  --border-color: hsl(235, 19%, 35%);
+  --border-color: hsla(235, 19%, 35%, 0.8);
   --shadow: hsla(0, 0%, 0%, 0.2);
 }
 
@@ -31,7 +32,7 @@
   --bg-color: var(--dt-very-dark-blue);
   --bg-list: var(--dt-desaturated-blue);
   --todo-item-color: var(--white);
-  --line-through: var(--dt-dark-grayish-blue);
+  --line-through: var(--dt-dark-grayish-blue-transparent);
   --instructions-color: var(--dt-dark-grayish-blue);
 }
 
