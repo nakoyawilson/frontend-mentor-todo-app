@@ -252,21 +252,20 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.05rem 1.75rem;
+  padding: 1.05rem 1.5rem;
   background-color: var(--bg-list);
   color: var(--instructions-color);
   font-size: 0.9rem;
-  /* letter-spacing: 0; */
 }
 
 .filter-options {
   display: flex;
-  gap: 1rem;
+  gap: 1.1rem;
   background-color: var(--bg-list);
   color: var(--instructions-color);
   position: absolute;
   left: 35%;
-  top: 1.05rem;
+  top: 1rem;
 }
 
 .radio-button {
@@ -274,7 +273,8 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 }
 
 .filter-option {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  /* letter-spacing: -0.02em; */
 }
 
 .filter-option:first-of-type {
