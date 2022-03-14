@@ -144,6 +144,7 @@ svg {
 }
 
 ::placeholder {
+  color: var(--instructions-color);
   opacity: 1;
   letter-spacing: -0.015em;
 }
@@ -264,6 +265,7 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   gap: 1.1rem;
   background-color: var(--bg-list);
   color: var(--instructions-color);
+  font-weight: 600;
   position: absolute;
   left: 35%;
   top: 1rem;
@@ -275,7 +277,6 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 
 .filter-option {
   font-size: 0.95rem;
-  /* letter-spacing: -0.02em; */
 }
 
 .filter-option:first-of-type {
