@@ -85,22 +85,23 @@ svg {
 
 /* Header Section */
 .app-header {
-  margin: 4.9rem 0 2.5rem;
+  margin: 4.65rem 0 2.25rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .app-title {
   color: var(--white);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.38em;
   font-size: 2.5rem;
 }
 
 .theme-button {
-  margin: 0.15rem 0.01rem 0 0;
+  /* margin: 0.15rem 0.01rem 0 0; */
+  margin: 0 0 0.5rem;
 }
 
 /* Todo List */
