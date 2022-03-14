@@ -14,7 +14,7 @@ const CreateToDoItem = (props) => {
         </label>
         <input
           type="text"
-          placeholder="Create a new todo..."
+          placeholder={`Create a new todo\u2026`}
           id="create-todo"
           className="create"
           value={props.todoText}

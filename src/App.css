@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap");
 
 :root {
   --font: "Josefin Sans", sans-serif;
@@ -22,6 +22,7 @@
   --dt-very-dark-grayish-blue1: hsl(233, 14%, 35%);
   --dt-very-dark-grayish-blue2: hsl(237, 14%, 26%);
   --border-color: hsl(235, 19%, 35%);
+  --shadow: hsla(0, 0%, 0%, 0.2);
 }
 
 .dark-mode {
@@ -54,6 +55,7 @@ body {
   font-family: var(--font);
   font-size: 1.125rem;
   font-weight: 400;
+  letter-spacing: -0.015em;
 }
 
 input {
@@ -76,24 +78,28 @@ svg {
 }
 
 .App {
-  width: min(87.2%, 34rem);
+  width: min(87.2%, 33.75rem);
   margin-inline: auto;
 }
 
 /* Header Section */
 .app-header {
-  margin: 4.75rem 0 2.5rem;
+  margin: 4.9rem 0 2.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .app-title {
   color: var(--white);
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-size: 2.75rem;
+  letter-spacing: 0.38em;
+  font-size: 2.5rem;
+}
+
+.theme-button {
+  margin: 0.15rem 0.01rem 0 0;
 }
 
 /* Todo List */
@@ -101,12 +107,13 @@ svg {
 .create-item-container {
   display: flex;
   gap: 1rem;
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
   align-self: center;
-  /* padding: 1.25rem 1.25rem 1.25rem 4.5rem; */
   border-radius: 5px;
   background: var(--bg-list);
   margin-bottom: 1.5rem;
+  gap: 1.5rem;
+  box-shadow: 0.75rem 2rem 2rem var(--shadow);
 }
 
 .visually-hidden {
@@ -132,16 +139,19 @@ svg {
   caret-color: var(--bright-blue);
   color: var(--todo-item-color);
   width: 100%;
+  padding-top: 0.25rem;
 }
 
 ::placeholder {
   opacity: 1;
+  letter-spacing: -0.015em;
 }
 
 #todo-list {
   border-radius: 5px;
   overflow: hidden;
-  margin-bottom: 3rem;
+  margin-bottom: 3.25rem;
+  box-shadow: 1rem 1rem 2rem 1rem var(--shadow);
 }
 
 .list-wrapper {
@@ -152,10 +162,10 @@ svg {
   display: flex;
   align-items: center;
   background: var(--bg-list);
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
   border-bottom: 1px solid var(--border-color);
   color: var(--todo-item-color);
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .todo-list-item:hover {
@@ -164,9 +174,8 @@ svg {
 
 .checkbox-container {
   position: relative;
-  width: 1.5625rem;
-  height: 1.5625rem;
-  /* background-image: var(--check-background); */
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 50%;
 }
 
@@ -182,8 +191,8 @@ input[type="checkbox"] {
   position: absolute;
   top: 0;
   left: 0;
-  height: 1.5625rem;
-  width: 1.5625rem;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
   border: 1px solid var(--border-color);
   background-color: inherit;
@@ -243,10 +252,11 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 1.75rem;
+  padding: 1.05rem 1.75rem;
   background-color: var(--bg-list);
   color: var(--instructions-color);
   font-size: 0.9rem;
+  /* letter-spacing: 0; */
 }
 
 .filter-options {
@@ -255,7 +265,6 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   background-color: var(--bg-list);
   color: var(--instructions-color);
   position: absolute;
-  /* bottom: 5.2rem; */
   left: 35%;
   top: 1.05rem;
 }

@@ -54,7 +54,7 @@ const App = () => {
       {
         id: idArray[0],
         todo: "Complete online JavaScript course",
-        isChecked: false,
+        isChecked: true,
       },
       {
         id: idArray[1],
