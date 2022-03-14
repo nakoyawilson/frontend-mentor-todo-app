@@ -88,7 +88,13 @@ const App = () => {
   const [todoArray, setTodoArray] = useState(
     JSON.parse(localStorage.getItem("nw-fem-todolist"))
   );
-  const [count, setCount] = useState(todoArray.length);
+  let numActive = 0;
+  todoArray.forEach((item) => {
+    if (!item.isChecked) {
+      numActive++;
+    }
+  });
+  const [count, setCount] = useState(numActive);
   const [displayedList, setDisplayedList] = useState(todoArray);
 
   // Create item
@@ -182,6 +188,16 @@ const App = () => {
     localStorage.setItem("nw-fem-todolist", JSON.stringify(newList));
   };
 
+  const updateActiveCount = (newList) => {
+    let numActiveItems = 0;
+    newList.forEach((item) => {
+      if (!item.isChecked) {
+        numActiveItems++;
+      }
+    });
+    setCount(numActiveItems);
+  };
+
   return (
     <div className="App">
       <Header toggleFunction={toggleTheme} themeIcon={themeIcon} />
@@ -198,6 +214,7 @@ const App = () => {
           filterFunction={filterItems}
           clearFunction={clearCompletedItems}
           updateTodoList={updateTodoList}
+          updateCount={updateActiveCount}
           completeList={todoArray}
         />
       </DragDropContext>

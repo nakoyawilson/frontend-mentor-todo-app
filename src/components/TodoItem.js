@@ -13,6 +13,7 @@ const TodoItem = (props) => {
     setArrayIndex(itemList.findIndex((item) => item.id === e.target.id));
     itemList[arrayIndex].isChecked = !isChecked;
     props.updateTodoList(itemList);
+    props.updateCount(itemList);
   };
 
   const handleClick = (e) => {
@@ -22,6 +23,7 @@ const TodoItem = (props) => {
     );
     itemList[arrayIndex].isChecked = !isChecked;
     props.updateTodoList(itemList);
+    props.updateCount(itemList);
   };
 
   return (

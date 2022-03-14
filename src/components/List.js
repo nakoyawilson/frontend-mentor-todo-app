@@ -13,6 +13,7 @@ const List = (props) => {
         deleteFunction={props.deleteFunction}
         index={index}
         updateTodoList={props.updateTodoList}
+        updateCount={props.updateCount}
         itemList={props.completeList}
       />
     );
