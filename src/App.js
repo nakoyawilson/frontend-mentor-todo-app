@@ -134,6 +134,7 @@ const App = () => {
     setTodoArray(updatedList);
     setDisplayedList(updatedList);
     setCount(updatedList.length);
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(updatedList));
   };
 
   // Filter list function
