@@ -20,7 +20,7 @@ const List = (props) => {
   };
 
   return (
-    <div className="list-container">
+    <main className="list-container">
       <div id="todo-list">
         <Droppable droppableId="todo-list-1">
           {(provided) => (
@@ -68,7 +68,7 @@ const List = (props) => {
       {props.count > 0 && (
         <p className="instructions">Drag and drop to reorder list</p>
       )}
-    </div>
+    </main>
   );
 };
 

@@ -54,7 +54,10 @@ const TodoItem = (props) => {
             </label>
           </div>
           <div className="delete-container">
-            <button onClick={() => props.deleteFunction(props.itemID)}>
+            <button
+              onClick={() => props.deleteFunction(props.itemID)}
+              aria-label="Delete item"
+            >
               <img src={deleteIcon} alt="" />
             </button>
           </div>

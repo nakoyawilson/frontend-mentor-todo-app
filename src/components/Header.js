@@ -6,6 +6,7 @@ const Header = (props) => {
         id="theme-icon-wrapper"
         onClick={props.toggleFunction}
         className="theme-button"
+        aria-label="Toggle theme"
       >
         <img src={props.themeIcon} alt="" />
       </button>
