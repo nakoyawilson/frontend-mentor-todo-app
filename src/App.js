@@ -10,15 +10,14 @@ import sunIcon from "./images/icon-sun.svg";
 import moonIcon from "./images/icon-moon.svg";
 
 const App = () => {
-  // const [themePreference, setThemePreference] = useState(
-  //   localStorage.getItem("nw-fem-todo-app-color")
-  //     ? localStorage.getItem("nw-fem-todo-app-color")
-  //     : window.matchMedia &&
-  //       window.matchMedia("(prefers-color-scheme: light)").matches
-  //     ? "light-mode"
-  //     : "dark-mode"
-  // );
-  const [themePreference, setThemePreference] = useState("dark-mode");
+  const [themePreference, setThemePreference] = useState(
+    localStorage.getItem("nw-fem-todo-app-color")
+      ? localStorage.getItem("nw-fem-todo-app-color")
+      : window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: light)").matches
+      ? "light-mode"
+      : "dark-mode"
+  );
   localStorage.setItem("nw-fem-todo-app-color", themePreference);
   const [themeIcon, setThemeIcon] = useState(
     themePreference === "dark-mode" ? sunIcon : moonIcon
