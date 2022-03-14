@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import CreateToDoItem from "./components/CreateTodoItem";
@@ -6,41 +6,41 @@ import List from "./components/List";
 import Footer from "./components/Footer";
 import { v4 as uuidv4 } from "uuid";
 import { DragDropContext } from "react-beautiful-dnd";
+import sunIcon from "./images/icon-sun.svg";
+import moonIcon from "./images/icon-moon.svg";
 
 const App = () => {
+  const [themePreference, setThemePreference] = useState(
+    localStorage.getItem("nw-fem-todo-app-color")
+      ? localStorage.getItem("nw-fem-todo-app-color")
+      : window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: light)").matches
+      ? "light-mode"
+      : "dark-mode"
+  );
+  localStorage.setItem("nw-fem-todo-app-color", themePreference);
+  const [themeIcon, setThemeIcon] = useState(
+    themePreference === "dark-mode" ? sunIcon : moonIcon
+  );
+
   const appBody = document.querySelector("body");
-  let themePreference = "";
+  appBody.classList.add(localStorage.getItem("nw-fem-todo-app-color"));
 
   // Toggle Theme Function
   const toggleTheme = () => {
     if (appBody.classList.contains("dark-mode")) {
       appBody.classList.remove("dark-mode");
       appBody.classList.add("light-mode");
-      themePreference = "light-mode";
+      setThemePreference("light-mode");
+      setThemeIcon(moonIcon);
     } else {
       appBody.classList.remove("light-mode");
       appBody.classList.add("dark-mode");
-      themePreference = "dark-mode";
+      setThemePreference("dark-mode");
+      setThemeIcon(sunIcon);
     }
     localStorage.setItem("nw-fem-todo-app-color", themePreference);
   };
-
-  // Set initial color theme
-  if (
-    localStorage.getItem("nw-fem-todo-app-color") === null ||
-    localStorage.getItem("nw-fem-todo-app-color") === ""
-  ) {
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: light)").matches
-    ) {
-      themePreference = "light-mode";
-    } else {
-      themePreference = "dark-mode";
-    }
-    localStorage.setItem("nw-fem-todo-app-color", themePreference);
-  }
-  appBody.classList.add(localStorage.getItem("nw-fem-todo-app-color"));
 
   // Set initial array
   if (localStorage.getItem("nw-fem-todolist") === null) {
@@ -89,8 +89,7 @@ const App = () => {
     JSON.parse(localStorage.getItem("nw-fem-todolist"))
   );
   const [count, setCount] = useState(todoArray.length);
-  // const [displayedList, setDisplayedList] = useState(todoArray);
-  let displayedList = todoArray;
+  const [displayedList, setDisplayedList] = useState(todoArray);
 
   // Add to list function
   const addToList = (e) => {
@@ -103,8 +102,7 @@ const App = () => {
     };
     const updatedList = [...todoArray, newItem];
     setTodoArray(updatedList);
-    // setDisplayedList(updatedList);
-    displayedList = updatedList;
+    setDisplayedList(updatedList);
     setCount(displayedList.length);
     formInput.value = "";
     e.preventDefault();
@@ -116,8 +114,7 @@ const App = () => {
       (todo) => todoArray[todoArray.indexOf(todo)].id !== taskID
     );
     setTodoArray(updatedList);
-    // setDisplayedList(updatedList);
-    displayedList = updatedList;
+    setDisplayedList(updatedList);
     setCount(displayedList.length);
   };
 
@@ -127,8 +124,7 @@ const App = () => {
       (todo) => todoArray[todoArray.indexOf(todo)].isChecked === false
     );
     setTodoArray(updatedList);
-    // setDisplayedList(updatedList);
-    displayedList = updatedList;
+    setDisplayedList(updatedList);
     setCount(displayedList.length);
   };
 
@@ -146,8 +142,7 @@ const App = () => {
     } else {
       listToDisplay = todoArray;
     }
-    // setDisplayedList(listToDisplay);
-    displayedList = listToDisplay;
+    setDisplayedList(listToDisplay);
     setCount(listToDisplay.length);
   };
 
@@ -170,14 +165,9 @@ const App = () => {
     setTodoArray(newTodoOrder);
   };
 
-  useEffect(() => {
-    localStorage.setItem("nw-fem-todolist", JSON.stringify(todoArray));
-    displayedList = todoArray;
-  }, [todoArray]);
-
   return (
     <div className="App">
-      <Header toggleFunction={toggleTheme} />
+      <Header toggleFunction={toggleTheme} themeIcon={themeIcon} />
       <CreateToDoItem submitFunction={addToList} />
       <DragDropContext onDragEnd={onDragEnd}>
         <List
