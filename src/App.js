@@ -91,20 +91,27 @@ const App = () => {
   const [count, setCount] = useState(todoArray.length);
   const [displayedList, setDisplayedList] = useState(todoArray);
 
+  // Create item
+  const [todoText, setTodoText] = useState("");
+  const handleTodoTextChange = (e) => {
+    const inputText = e.target.value;
+    setTodoText(inputText);
+  };
+
   // Add to list function
   const addToList = (e) => {
-    const formInput = document.querySelector(".create");
     const itemID = uuidv4();
     const newItem = {
       id: itemID,
-      todo: formInput.value,
+      todo: todoText,
       isChecked: false,
     };
     const updatedList = [...todoArray, newItem];
     setTodoArray(updatedList);
     setDisplayedList(updatedList);
-    setCount(displayedList.length);
-    formInput.value = "";
+    setCount(updatedList.length);
+    setTodoText("");
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(updatedList));
     e.preventDefault();
   };
 
@@ -115,7 +122,8 @@ const App = () => {
     );
     setTodoArray(updatedList);
     setDisplayedList(updatedList);
-    setCount(displayedList.length);
+    setCount(updatedList.length);
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(updatedList));
   };
 
   // Clear Completed Items from list
@@ -125,7 +133,7 @@ const App = () => {
     );
     setTodoArray(updatedList);
     setDisplayedList(updatedList);
-    setCount(displayedList.length);
+    setCount(updatedList.length);
   };
 
   // Filter list function
@@ -168,7 +176,11 @@ const App = () => {
   return (
     <div className="App">
       <Header toggleFunction={toggleTheme} themeIcon={themeIcon} />
-      <CreateToDoItem submitFunction={addToList} />
+      <CreateToDoItem
+        submitFunction={addToList}
+        todoText={todoText}
+        handleChange={handleTodoTextChange}
+      />
       <DragDropContext onDragEnd={onDragEnd}>
         <List
           todoList={displayedList}

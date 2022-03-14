@@ -17,6 +17,8 @@ const CreateToDoItem = (props) => {
           placeholder="Create a new todo..."
           id="create-todo"
           className="create"
+          value={props.todoText}
+          onChange={props.handleChange}
         />
         <button type="submit" className="visually-hidden">
           Create
