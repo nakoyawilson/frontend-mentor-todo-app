@@ -53,13 +53,13 @@ const TodoItem = (props) => {
               {props.todoItem}
             </label>
           </div>
-          <div
+          <button
             className="delete-container"
             onClick={() => props.deleteFunction(props.itemID)}
             aria-label="Delete item"
           >
             <img src={deleteIcon} alt="" />
-          </div>
+          </button>
         </div>
       )}
     </Draggable>

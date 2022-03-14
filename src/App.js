@@ -201,23 +201,25 @@ const App = () => {
   return (
     <div className="App">
       <Header toggleFunction={toggleTheme} themeIcon={themeIcon} />
-      <CreateToDoItem
-        submitFunction={addToList}
-        todoText={todoText}
-        handleChange={handleTodoTextChange}
-      />
-      <DragDropContext onDragEnd={onDragEnd}>
-        <List
-          todoList={displayedList}
-          deleteFunction={deleteFromList}
-          count={count}
-          filterFunction={filterItems}
-          clearFunction={clearCompletedItems}
-          updateTodoList={updateTodoList}
-          updateCount={updateActiveCount}
-          completeList={todoArray}
+      <main>
+        <CreateToDoItem
+          submitFunction={addToList}
+          todoText={todoText}
+          handleChange={handleTodoTextChange}
         />
-      </DragDropContext>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <List
+            todoList={displayedList}
+            deleteFunction={deleteFromList}
+            count={count}
+            filterFunction={filterItems}
+            clearFunction={clearCompletedItems}
+            updateTodoList={updateTodoList}
+            updateCount={updateActiveCount}
+            completeList={todoArray}
+          />
+        </DragDropContext>
+      </main>
       <Footer />
     </div>
   );
