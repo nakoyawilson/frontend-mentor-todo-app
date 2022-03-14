@@ -21,7 +21,7 @@ const List = (props) => {
 
   return (
     <main className="list-container">
-      <div id="todo-list">
+      <div id="todo-list" class="todo-list">
         <Droppable droppableId="todo-list-1">
           {(provided) => (
             <div
