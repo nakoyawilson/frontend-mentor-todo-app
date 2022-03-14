@@ -12,6 +12,8 @@ const List = (props) => {
         itemIsChecked={item.isChecked}
         deleteFunction={props.deleteFunction}
         index={index}
+        updateTodoList={props.updateTodoList}
+        itemList={props.completeList}
       />
     );
   };

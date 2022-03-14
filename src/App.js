@@ -171,6 +171,14 @@ const App = () => {
     newTodoOrder.splice(source.index, 1);
     newTodoOrder.splice(destination.index, 0, droppedItem);
     setTodoArray(newTodoOrder);
+    setDisplayedList(newTodoOrder);
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(newTodoOrder));
+  };
+
+  const updateTodoList = (newList) => {
+    setTodoArray(newList);
+    setDisplayedList(newList);
+    localStorage.setItem("nw-fem-todolist", JSON.stringify(newList));
   };
 
   return (
@@ -188,6 +196,8 @@ const App = () => {
           count={count}
           filterFunction={filterItems}
           clearFunction={clearCompletedItems}
+          updateTodoList={updateTodoList}
+          completeList={todoArray}
         />
       </DragDropContext>
       <Footer />

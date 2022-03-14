@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import deleteIcon from "../images/icon-cross.svg";
 
 const TodoItem = (props) => {
   const [isChecked, setIsChecked] = useState(props.itemIsChecked);
-  const [arrayIndex, setArrayIndex] = useState(0);
+  const [arrayIndex, setArrayIndex] = useState(props.index);
 
-  const itemList = JSON.parse(localStorage.getItem("nw-fem-todolist"));
+  const itemList = props.itemList;
 
   const handleChange = (e) => {
     setIsChecked(!isChecked);
     setArrayIndex(itemList.findIndex((item) => item.id === e.target.id));
+    itemList[arrayIndex].isChecked = !isChecked;
+    props.updateTodoList(itemList);
   };
 
   const handleClick = (e) => {
@@ -18,14 +20,9 @@ const TodoItem = (props) => {
     setArrayIndex(
       itemList.findIndex((item) => item.id === e.target.previousSibling.id)
     );
+    itemList[arrayIndex].isChecked = !isChecked;
+    props.updateTodoList(itemList);
   };
-
-  useEffect(() => {
-    if (itemList.length > 0) {
-      itemList[arrayIndex].isChecked = isChecked;
-    }
-    localStorage.setItem("nw-fem-todolist", JSON.stringify(itemList));
-  }, [isChecked, itemList, arrayIndex]);
 
   return (
     <Draggable draggableId={props.itemID} index={props.index}>
