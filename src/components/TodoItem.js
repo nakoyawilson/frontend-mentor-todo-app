@@ -27,11 +27,7 @@ const TodoItem = (props) => {
   };
 
   return (
-    <Draggable
-      draggableId={props.itemID}
-      index={props.index}
-      disableInteractiveElementBlocking
-    >
+    <Draggable draggableId={props.itemID} index={props.index}>
       {(provided) => (
         <div
           className="todo-list-item"
