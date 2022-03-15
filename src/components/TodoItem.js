@@ -27,7 +27,11 @@ const TodoItem = (props) => {
   };
 
   return (
-    <Draggable draggableId={props.itemID} index={props.index}>
+    <Draggable
+      draggableId={props.itemID}
+      index={props.index}
+      disableInteractiveElementBlocking
+    >
       {(provided) => (
         <div
           className="todo-list-item"
@@ -54,6 +58,7 @@ const TodoItem = (props) => {
             </label>
           </div>
           <button
+            type="button"
             className="delete-container"
             onClick={() => props.deleteFunction(props.itemID)}
             aria-label="Delete item"
